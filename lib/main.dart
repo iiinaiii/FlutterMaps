@@ -1,44 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'google_maps_page.dart';
+import 'map_box_page.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Scaffold(
-      appBar: AppBar(title: const Text('Flutter Google Maps')),
-      body: MapsDemo(),
-    ),
+    home: MainPage(),
   ));
 }
 
-class MapsDemo extends StatefulWidget {
+class MainPage extends StatefulWidget {
   @override
-  State createState() => MapsDemoState();
+  State createState() => MainPageState();
 }
 
-class MapsDemoState extends State<MapsDemo> {
-  GoogleMapController mapController;
+class MainPageState extends State<MainPage> {
+  int _selectedIndex = 1;
+
+  final _widgetOptions = [
+    GoogleMapsPage(),
+    MapBoxPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: LatLng(35.6580339, 139.7016358),
-            zoom: 17.0,
+      appBar: AppBar(
+        title: Text('FlutterMaps'),
+      ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            title: Text('Google Maps'),
           ),
-          myLocationEnabled: true,
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            title: Text('Map Box'),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        fixedColor: Colors.deepPurple,
+        onTap: _onItemTapped,
       ),
     );
   }
 
-  void _onMapCreated(GoogleMapController controller) {
+  void _onItemTapped(int index) {
     setState(() {
-      mapController = controller;
+      _selectedIndex = index;
     });
   }
 }
