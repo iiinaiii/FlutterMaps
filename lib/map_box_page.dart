@@ -16,14 +16,17 @@ class _MapBoxPageState extends State<MapBoxPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: MapView(
-        onMapViewCreated: _onMapViewCreated,
-        onTap: (point, coords) async {
-          List ls = await controller.queryRenderedFeatures(
-              point, ['LayerName'], null);
-          print("queryRenderedFeatures test $ls");
-        },
+      child: Center(
+        child: Text("Not implemented..."),
       ),
+//      child: MapView(
+//        onMapViewCreated: _onMapViewCreated,
+//        onTap: (point, coords) async {
+//          List ls = await controller.queryRenderedFeatures(
+//              point, ['LayerName'], null);
+//          print("queryRenderedFeatures test $ls");
+//        },
+//      ),
     );
   }
 }
