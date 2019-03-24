@@ -62,6 +62,8 @@
 **/ios/Flutter/flutter_assets/
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/Keys/
+**/ios/**/Keys.swift
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3

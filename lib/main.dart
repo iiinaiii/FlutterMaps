@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'google_maps_page.dart';
 import 'map_box_page.dart';
@@ -15,7 +16,7 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
 
   final _widgetOptions = [
     GoogleMapsPage(),
@@ -38,12 +39,23 @@ class MainPageState extends State<MainPage> {
             title: Text('Google Maps'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: SvgPicture.asset(
+              'images/mapbox.svg',
+              semanticsLabel: "Mapbox logo",
+              width: 24,
+              height: 24,
+              color: Colors.grey,
+            ),
+            activeIcon: SvgPicture.asset(
+              'images/mapbox.svg',
+              semanticsLabel: "Mapbox logo",
+              width: 24,
+              height: 24,
+            ),
             title: Text('Map Box'),
           ),
         ],
         currentIndex: _selectedIndex,
-        fixedColor: Colors.deepPurple,
         onTap: _onItemTapped,
       ),
     );
